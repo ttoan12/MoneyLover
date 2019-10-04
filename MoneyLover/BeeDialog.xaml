@@ -1,0 +1,30 @@
+﻿<Window x:Class="MoneyLover.BeeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+        Title="BeeDialog" Height="270" Width="300" SizeToContent="Height" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <Image Source="/images/Bee.png" Height="80" Margin="0,20,0,0"/>
+        <TextBlock TextWrapping="Wrap" Margin="20,10" Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+            Sổ tiết kiệm <Run x:Name="txtMaSo" FontWeight="Bold">[Mã sổ]</Run> đến hạn ngày <Run x:Name="txtNgayHetHan" FontWeight="Bold">[Ngày hết hạn]</Run>. Số tiền rút ra trước hạn sẽ được tính theo lãi suất không kì hạn (<Run x:Name="txtTySuatLai" FontWeight="Bold">[Tỷ suất]%</Run>/năm). <LineBreak/>
+            Bạn có muốn tiếp tục?
+        </TextBlock>
+        <Grid Margin="20,0,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnNo" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" Grid.Column="1" Margin="0,0,5,0" Foreground="#FF69717B" Click="BtnNo_Click">
+                KHÔNG
+            </Button>
+            <Button x:Name="btnYes" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" Grid.Column="2" Margin="5,0,0,0" Foreground="#FF08B2F0" Click="BtnYes_Click">
+                CÓ
+            </Button>
+        </Grid>
+    </StackPanel>
+</Window>

@@ -1,0 +1,58 @@
+﻿<Window x:Class="MoneyLover.RegWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+        Title="Money Lover" Height="457" Width="295" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MaxWidth="295" MaxHeight="460" WindowStyle="None" MouseDown="Window_MouseDown">
+    <Grid Background="#FFEEEEEE">
+        <StackPanel Margin="20,10">
+            <Label Content="Đăng ký bằng email" HorizontalAlignment="Center" FontFamily="Arial" FontSize="18.667"/>
+            <TextBox x:Name="txtEmail"
+                materialDesign:HintAssist.Hint="Email"
+                materialDesign:HintAssist.Foreground="#FF2BB94B"
+                materialDesign:TextFieldAssist.UnderlineBrush="#FF2BB94B"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                FontFamily="Arial" FontSize="14.667" Margin="0,12" TabIndex="1" />
+
+            <Grid Margin="0,12">
+                <PasswordBox x:Name="txtPassword"
+                materialDesign:HintAssist.Hint="Mật khẩu"  Visibility="Visible"
+                materialDesign:HintAssist.Foreground="#FF2BB94B"
+                materialDesign:TextFieldAssist.UnderlineBrush="#FF2BB94B"
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontFamily="Arial" FontSize="14.667" TabIndex="2" Panel.ZIndex="0" Padding="0,0,12,0" />
+                <TextBox x:Name="txtPassword_Show"
+                materialDesign:HintAssist.Hint="Mật khẩu" Visibility="Hidden"
+                materialDesign:HintAssist.Foreground="#FF2BB94B"
+                materialDesign:TextFieldAssist.UnderlineBrush="#FF2BB94B"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Arial" FontSize="14.667" TabIndex="2" Panel.ZIndex="0" Padding="0,0,12,0" />
+                <Label x:Name="icoHidden" Visibility="Visible" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,5" Padding="0" Panel.ZIndex="1" MouseDown="ShowPassword" >
+                    <materialDesign:PackIcon Kind="EyeCircleOutline" />
+                </Label>
+                <Label x:Name="icoShowed" Visibility="Hidden" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,5" Padding="0" Panel.ZIndex="1" MouseDown="HidePassword" >
+                    <materialDesign:PackIcon Kind="EyeCircle" />
+                </Label>
+            </Grid>
+            
+            <Button x:Name="btnReg"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="Resource name: MaterialDesignRaisedButton" 
+                FontFamily="Arial" FontWeight="Bold" FontSize="12" 
+                Foreground="White" Background="#FF2BB94B" BorderBrush="#FF2BB94B" 
+                Margin="0,2" IsTabStop="False" Click="BtnReg_Click">
+                    ĐĂNG KÝ
+            </Button>
+            <Button x:Name="btnLogin"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="MaterialDesignFlatButton"
+                FontFamily="Arial" FontWeight="Bold" FontSize="12" 
+                Foreground="#FF2BB94B"
+                Margin="0,12" IsTabStop="False" Click="BtnLogin_Click">
+                    ĐĂNG NHẬP
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</Window>

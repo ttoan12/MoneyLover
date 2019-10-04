@@ -1,0 +1,31 @@
+﻿<Window x:Class="MoneyLover.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+        Title="Money Lover" Height="512" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="20">SỔ TIẾT KIỆM</TextBlock>
+        <TabControl Grid.Row="1">
+            <TabItem x:Name="lblDangMo" Header="Đang mở">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgSoDangMo" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single" />
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="lblDaTatToan" Header="Đã tất toán">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgSoDaTatToan" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
