@@ -29,7 +29,7 @@
         </StackPanel>
 
         <Button x:Name="btnReg" Content="LẦN ĐẦU SỬ DỤNG MONEY LOVER" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Bottom" Height="32" Width="255" Padding="0" FontFamily="Arial" FontSize="12" FontWeight="Bold" Background="White" Foreground="Green" BorderBrush="Black" BorderThickness="0" Margin="0,0,0,65" Click="BtnReg_Click"/>
-        <Button x:Name="btnLogin" Content="ĐÃ SỬ DỤNG MONEY LOVER" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Bottom" Height="32" Width="255" Padding="0" FontFamily="Arial" FontSize="12" FontWeight="Bold" Background="#FFDB5C0F" BorderBrush="White" BorderThickness="1" Margin="20,0,20,15" Click="BtnLogin_Click"/>
+        <Button x:Name="btnLogin" Content="ĐÃ SỬ DỤNG MONEY LOVER" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Bottom" Height="32" Width="255" Padding="0" FontFamily="Arial" FontSize="12" FontWeight="Bold" Background="#FFDB5C0F" Foreground="White" BorderBrush="White" BorderThickness="1" Margin="20,0,20,15" Click="BtnLogin_Click"/>
 
     </Grid>
 </Window>
