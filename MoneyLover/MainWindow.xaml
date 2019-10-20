@@ -12,7 +12,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
+
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="20">SỔ TIẾT KIỆM</TextBlock>
         <TabControl Grid.Row="1">
             <TabItem x:Name="lblDangMo" Header="Đang mở">
