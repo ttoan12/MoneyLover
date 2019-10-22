@@ -6,7 +6,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MoneyLover"
         mc:Ignorable="d"
-        Title="Money Lover" Height="457" Width="295" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MaxWidth="295" MaxHeight="460" WindowStyle="None" MouseDown="Window_MouseDown">
+        Title="Money Lover" Height="457" Width="295"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        MaxWidth="295" MaxHeight="460" WindowStyle="None"
+        MouseDown="Window_MouseDown" Loaded="Window_Loaded">
     <Grid Background="#FFEEEEEE">
         <StackPanel Margin="20,10">
             <Label Content="Đăng nhập" HorizontalAlignment="Center" FontFamily="Arial" FontSize="18.667"/>
@@ -14,7 +17,7 @@
                 materialDesign:HintAssist.Hint="Email"
                 materialDesign:HintAssist.Foreground="#FF2BB94B"
                 materialDesign:TextFieldAssist.UnderlineBrush="#FF2BB94B"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 FontFamily="Arial" FontSize="14.667" Margin="0,12" TabIndex="1" />
 
             <Grid Margin="0,12">
@@ -36,18 +39,18 @@
                 </Label>
             </Grid>
 
-            <Button x:Name="btnLogin"
+            <Button x:Name="btnLogin" IsDefault="True"
                 Style="{StaticResource MaterialDesignRaisedButton}"
-                ToolTip="Resource name: MaterialDesignRaisedButton" 
-                FontFamily="Arial" FontWeight="Bold" FontSize="12" 
-                Foreground="White" Background="#FF2BB94B" BorderBrush="#FF2BB94B" 
+                ToolTip="Đăng nhập vào tài khoản"
+                FontFamily="Arial" FontWeight="Bold" FontSize="12"
+                Foreground="White" Background="#FF2BB94B" BorderBrush="#FF2BB94B"
                 Margin="0,2" IsTabStop="False" Click="BtnLogin_Click">
                 ĐĂNG NHẬP
             </Button>
             <Button x:Name="btnReg"
                 Style="{StaticResource MaterialDesignFlatButton}"
-                ToolTip="MaterialDesignFlatButton"
-                FontFamily="Arial" FontWeight="Bold" FontSize="12" 
+                ToolTip="Đăng ký tài khoản mới"
+                FontFamily="Arial" FontWeight="Bold" FontSize="12"
                 Foreground="#FF2BB94B"
                 Margin="0,12" IsTabStop="False" Click="BtnReg_Click">
                 ĐĂNG KÝ

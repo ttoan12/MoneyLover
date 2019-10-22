@@ -11,7 +11,6 @@ namespace MoneyLover.Models
     {
         [Key]
         public string MaKH { get; set; }
-        public string TenKH { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 

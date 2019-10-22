@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MoneyLover.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -21,13 +23,28 @@ namespace MoneyLover
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private MLContext _context;
+
         public LoginWindow()
         {
             InitializeComponent();
         }
 
-
-
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _context = new MLContext();
+                _context.KhachHangs.Load();
+            }
+            catch
+            {
+                if (MessageBox.Show("Máy chủ đang được bảo trì!", "Error", MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                {
+                    Close();
+                }
+            }
+        }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -63,9 +80,25 @@ namespace MoneyLover
             string psw = txtPassword.Password.Length > 0 ? txtPassword.Password : txtPassword_Show.Text;
             if (AccountValidate.IsMail(mail) && AccountValidate.IsPassword(psw))
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+                try
+                {
+                    var kh = _context.KhachHangs.Local.Where(x => x.Email == mail);
+                    if (kh.Count() > 0)
+                    {
+                        if (psw == Encryptor.Decrypt(kh.FirstOrDefault().Password, kh.FirstOrDefault().MaKH))
+                        {
+                            MainWindow mainWindow = new MainWindow(kh.FirstOrDefault().MaKH);
+                            mainWindow.Show();
+                            Close();
+                        }
+                        else throw new Exception("Sai mật khẩu");
+                    }
+                    else throw new Exception("Sai Email");
+                }
+                catch
+                {
+                    MessageBox.Show("Email hoặc mật khẩu không đúng!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -73,7 +106,7 @@ namespace MoneyLover
         {
             RegWindow regWindow = new RegWindow();
             regWindow.Show();
-            this.Close();
+            Close();
         }
     }
 }

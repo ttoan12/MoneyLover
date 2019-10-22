@@ -76,12 +76,17 @@
     <Compile Include="BeeDialog.xaml.cs">
       <DependentUpon>BeeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Encryptor.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201910220741392_init-DB.cs" />
     <Compile Include="Migrations\201910220741392_init-DB.designer.cs">
       <DependentUpon>201910220741392_init-DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910221110003_update-table-KhachHang.cs" />
+    <Compile Include="Migrations\201910221110003_update-table-KhachHang.designer.cs">
+      <DependentUpon>201910221110003_update-table-KhachHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\KhachHang.cs" />
@@ -141,6 +146,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201910220741392_init-DB.resx">
       <DependentUpon>201910220741392_init-DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910221110003_update-table-KhachHang.resx">
+      <DependentUpon>201910221110003_update-table-KhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

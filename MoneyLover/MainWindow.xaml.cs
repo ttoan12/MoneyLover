@@ -23,9 +23,11 @@ namespace MoneyLover
     public partial class MainWindow : Window
     {
         private MLContext _context;
+        private string maKH;
 
-        public MainWindow()
+        public MainWindow(string maKH)
         {
+            this.maKH = maKH;
             InitializeComponent();
         }
 
@@ -39,20 +41,40 @@ namespace MoneyLover
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context = new MLContext();
+            try
+            {
+                _context = new MLContext();
 
-            dgSoDangMo.ItemsSource = _context.SoTietKiems.Where(x => x.TinhTrang == "Chưa tất toán").ToList();
-            dgSoDaTatToan.ItemsSource = _context.SoTietKiems.Where(x => x.TinhTrang == "Đã tất toán").ToList();
+                dgSoDangMo.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == maKH && x.TinhTrang == "Chưa tất toán").ToList();
+                dgSoDaTatToan.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == maKH && x.TinhTrang == "Đã tất toán").ToList();
+            }
+            catch
+            {
+                if (MessageBox.Show("Máy chủ đang được bảo trì!", "Error", MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                {
+                    Close();
+                }
+            }
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            /* TODO: Form thêm sổ tiết kiệm */
         }
 
         private void BtnSua_Click(object sender, RoutedEventArgs e)
         {
-
+            /* TODO: Form sửa sổ chưa tất toán
+             *  - Gửi thêm
+             *  - Rút một phần
+             *  - Tất toán
+             */
         }
 
         private void BtnXem_Click(object sender, RoutedEventArgs e)
         {
-
+            /* TODO: Form xem sổ đã tất toán */
         }
+
     }
 }
