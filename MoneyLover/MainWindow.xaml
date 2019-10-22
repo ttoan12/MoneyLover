@@ -1,31 +1,73 @@
-﻿<Window x:Class="MoneyLover.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MoneyLover"
+        xmlns:Models="clr-namespace:MoneyLover.Models" x:Class="MoneyLover.MainWindow"
         mc:Ignorable="d"
-        Title="Money Lover" Height="512" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Money Lover" Height="512" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="20">SỔ TIẾT KIỆM</TextBlock>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="20"><Run Text="SỔ TIẾT KIỆM" /></TextBlock>
+            <Button x:Name="btnThem" Grid.Column="1" HorizontalAlignment="Right" Width="30" Height="30" Margin="0,10,10,0"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                ToolTip="Thêm sổ tiết kiệm mới">
+                <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
+            </Button>
+        </Grid>
         <TabControl Grid.Row="1">
             <TabItem x:Name="lblDangMo" Header="Đang mở">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgSoDangMo" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single" />
+                    <DataGrid x:Name="dgSoDangMo" AutoGenerateColumns="False" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mã sổ" Binding="{Binding MaSTK}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Tổng số tiền gốc" Binding="{Binding TongTienGoc}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Kỳ hạn gửi" Binding="{Binding KyHan.ThoiHan}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Lãi suất năm" Binding="{Binding KyHan.LaiSuatNam}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Ngày mở" Binding="{Binding NgayMoSo}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTemplateColumn Header="Chỉnh sửa" ClipboardContentBinding="{x:Null}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnSua" Content="Sửa" Click="BtnSua_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem x:Name="lblDaTatToan" Header="Đã tất toán">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgSoDaTatToan" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single" />
+                    <DataGrid x:Name="dgSoDaTatToan" AutoGenerateColumns="False" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mã sổ" Binding="{Binding MaSTK}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Tổng số tiền gốc" Binding="{Binding TongTienGoc}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Kỳ hạn gửi" Binding="{Binding KyHan.ThoiHan}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Lãi suất năm" Binding="{Binding KyHan.LaiSuatNam}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTextColumn Header="Ngày mở" Binding="{Binding NgayMoSo}" ClipboardContentBinding="{x:Null}" />
+                            <DataGridTemplateColumn Header="Xem" ClipboardContentBinding="{x:Null}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnXem" Content="Xem" Click="BtnXem_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

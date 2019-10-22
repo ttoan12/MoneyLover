@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MoneyLover.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,8 @@ namespace MoneyLover
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MLContext _context;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +35,24 @@ namespace MoneyLover
                 e.Cancel = false;
             else
                 e.Cancel = true;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _context = new MLContext();
+
+            dgSoDangMo.ItemsSource = _context.SoTietKiems.Where(x => x.TinhTrang == "Chưa tất toán").ToList();
+            dgSoDaTatToan.ItemsSource = _context.SoTietKiems.Where(x => x.TinhTrang == "Đã tất toán").ToList();
+        }
+
+        private void BtnSua_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnXem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
