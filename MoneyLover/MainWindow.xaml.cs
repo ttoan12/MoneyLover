@@ -23,11 +23,11 @@ namespace MoneyLover
     public partial class MainWindow : Window
     {
         private MLContext _context;
-        private string maKH;
+        private string _maKH;
 
         public MainWindow(string maKH)
         {
-            this.maKH = maKH;
+            _maKH = maKH;
             InitializeComponent();
         }
 
@@ -44,9 +44,7 @@ namespace MoneyLover
             try
             {
                 _context = new MLContext();
-
-                dgSoDangMo.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == maKH && x.TinhTrang == "Chưa tất toán").ToList();
-                dgSoDaTatToan.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == maKH && x.TinhTrang == "Đã tất toán").ToList();
+                LoadDanhSach();
             }
             catch
             {
@@ -59,7 +57,9 @@ namespace MoneyLover
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            /* TODO: Form thêm sổ tiết kiệm */
+            AddForm addForm = new AddForm(_maKH);
+            addForm.ShowDialog();
+            LoadDanhSach();
         }
 
         private void BtnSua_Click(object sender, RoutedEventArgs e)
@@ -69,6 +69,8 @@ namespace MoneyLover
              *  - Rút một phần
              *  - Tất toán
              */
+
+            LoadDanhSach();
         }
 
         private void BtnXem_Click(object sender, RoutedEventArgs e)
@@ -76,5 +78,12 @@ namespace MoneyLover
             /* TODO: Form xem sổ đã tất toán */
         }
 
+        private void LoadDanhSach()
+        {
+            dgSoDangMo.ItemsSource = null;
+            dgSoDangMo.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == _maKH && x.TinhTrang == "Chưa tất toán").ToList();
+            dgSoDaTatToan.ItemsSource = null;
+            dgSoDaTatToan.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == _maKH && x.TinhTrang == "Đã tất toán").ToList();
+        }
     }
 }

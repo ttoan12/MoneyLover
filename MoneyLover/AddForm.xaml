@@ -1,0 +1,145 @@
+﻿<Window x:Class="MoneyLover.AddForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+        Title="AddForm" Height="300" Width="500" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                Thêm sổ tiết kiệm
+        </TextBlock>
+
+        <ComboBox x:Name="txtNganHang"
+            Grid.Row="1" Grid.Column="0"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="10 0 10 0"
+            IsEditable="True"
+            materialDesign:HintAssist.Hint="Ngân hàng"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+        <DatePicker x:Name="txtNgayGui"
+            Grid.Row="1" Grid.Column="1"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Margin="10 0 10 0"
+            materialDesign:HintAssist.Hint="Ngày gửi"
+            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+        <TextBox x:Name="txtSoTienGui"
+            Grid.Row="2" Grid.Column="0"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="10 0 10 0"
+            materialDesign:HintAssist.Hint="Số tiền gửi"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            PreviewKeyDown="txtSoTienGui_PreviewKeyDown" />
+
+        <ComboBox x:Name="txtKyHan"
+            Grid.Row="2" Grid.Column="1"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Margin="10 0 10 0"
+            materialDesign:HintAssist.Hint="Kỳ hạn"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+            SelectionChanged="txtKyHan_SelectionChanged" >
+            <ComboBoxItem>Không kỳ hạn</ComboBoxItem>
+            <ComboBoxItem>1 tháng</ComboBoxItem>
+            <ComboBoxItem>3 tháng</ComboBoxItem>
+            <ComboBoxItem>6 tháng</ComboBoxItem>
+            <ComboBoxItem>12 tháng</ComboBoxItem>
+        </ComboBox>
+
+        <TextBox x:Name="txtLaiSuat"
+            Grid.Row="3" Grid.Column="0"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="10 0 10 0"
+            materialDesign:HintAssist.Hint="Lãi suất"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            PreviewKeyDown="txtLaiSuat_PreviewKeyDown" />
+
+        <TextBox x:Name="txtLaiSuatKhongKyHan"
+            Grid.Row="3" Grid.Column="1"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Margin="10 0 10 0"
+            materialDesign:HintAssist.Hint="Lãi suất không kỳ hạn"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            PreviewKeyDown="txtLaiSuatKhongKyHan_PreviewKeyDown" />
+
+        <ComboBox x:Name="txtTraLai"
+            Grid.Row="4" Grid.Column="0"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="10 0 10 0"
+            materialDesign:HintAssist.Hint="Trả lãi"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <ComboBoxItem>Cuối kỳ</ComboBoxItem>
+            <ComboBoxItem>Đầu kỳ</ComboBoxItem>
+            <ComboBoxItem>Định kỳ hàng tháng</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="txtKhiDenHan"
+            Grid.Row="4" Grid.Column="1"
+            Width="200px"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Margin="10 0 10 0"
+            materialDesign:HintAssist.Hint="Khi đến hạn"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}" >
+            <ComboBoxItem>Tái tục gốc và lãi</ComboBoxItem>
+            <ComboBoxItem>Tái tục gốc</ComboBoxItem>
+            <ComboBoxItem>Tất toán sổ</ComboBoxItem>
+        </ComboBox>
+
+        <Button x:Name="btnThem"
+            Grid.Row="5" Grid.Column="0"
+            HorizontalAlignment="Right" VerticalAlignment="Center"
+            Margin="0 0 4 0"
+            Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+            Width="150"
+            ToolTip="Thêm sổ tiết kiệm vào danh sách"
+            Click="btnThem_Click">
+                Thêm sổ
+        </Button>
+
+        <Button x:Name="btnHuy"
+            Grid.Row="5" Grid.Column="1"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            Margin="4 0 0 0"
+            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+            Width="150"
+            ToolTip="Huỷ bỏ các thao tác và quay về trang quản lý"
+            Click="btnHuy_Click">
+            Huỷ
+        </Button>
+    </Grid>
+</Window>
