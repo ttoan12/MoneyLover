@@ -1,0 +1,101 @@
+﻿<Window x:Class="MoneyLover.DetailForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+        Title="Xem STK" Height="400" Width="400"
+        Loaded="Window_Loaded">
+    <Grid Margin="10 0 10 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="txtMaSo"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            Style="{StaticResource MaterialDesignHeadlineTextBlock}" Text="STK: "/>
+
+        <TextBlock
+            Grid.Row="1"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Ngày mở: "/>
+
+        <TextBlock
+            Grid.Row="2"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Tổng số tiền gửi: "/>
+
+        <TextBlock
+            Grid.Row="3"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Kỳ hạn gửi: "/>
+
+        <TextBlock
+            Grid.Row="4"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Lãi suất năm: "/>
+
+        <TextBlock
+            Grid.Row="5"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Tổng tiền lãi: "/>
+
+        <TextBlock
+            Grid.Row="6"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Tổng số dư: "/>
+
+        <TextBlock x:Name="txtNgayMo"
+            Grid.Row="1" Grid.Column="1"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+
+        <TextBlock x:Name="txtTongTienGui"
+            Grid.Row="2" Grid.Column="1"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+
+        <TextBlock x:Name="txtKyHan"
+            Grid.Row="3" Grid.Column="1"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+
+        <TextBlock x:Name="txtLaiSuat"
+            Grid.Row="4" Grid.Column="1"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+
+        <TextBlock x:Name="txtTongTienLai"
+            Grid.Row="5" Grid.Column="1"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+
+        <TextBlock x:Name="txtSoDu"
+            Grid.Row="6" Grid.Column="1"
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+
+        <Button x:Name="btnOK"
+            Grid.Row="7" Grid.Column="1"
+            Width="100px"
+            VerticalAlignment="Center" HorizontalAlignment="Right"
+            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+            ToolTip="Trở về giao diện chính"
+            Click="btnOK_Click">
+            OK
+        </Button>
+    </Grid>
+</Window>

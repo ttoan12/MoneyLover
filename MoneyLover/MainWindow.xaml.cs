@@ -75,15 +75,21 @@ namespace MoneyLover
 
         private void BtnXem_Click(object sender, RoutedEventArgs e)
         {
-            /* TODO: Form xem sổ đã tất toán */
+            string maSo = dgSoDaTatToan.SelectedValue.ToString();
+            DetailForm detailForm = new DetailForm(maSo);
+            detailForm.ShowDialog();
         }
 
         private void LoadDanhSach()
         {
+            var lstSoDangMo = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == _maKH && x.TinhTrang == "Chưa tất toán").ToList();
+            var lstSoDaTatToan = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == _maKH && x.TinhTrang == "Đã tất toán").ToList();
             dgSoDangMo.ItemsSource = null;
-            dgSoDangMo.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == _maKH && x.TinhTrang == "Chưa tất toán").ToList();
+            dgSoDangMo.ItemsSource = lstSoDangMo;
+            dgSoDangMo.SelectedValuePath = "MaSTK";
             dgSoDaTatToan.ItemsSource = null;
-            dgSoDaTatToan.ItemsSource = _context.SoTietKiems.Where(x => x.KhachHang.MaKH == _maKH && x.TinhTrang == "Đã tất toán").ToList();
+            dgSoDaTatToan.ItemsSource = lstSoDaTatToan;
+            dgSoDaTatToan.SelectedValuePath = "MaSTK";
         }
     }
 }

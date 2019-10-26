@@ -73,8 +73,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AccountValidate.cs" />
+    <Compile Include="AddForm.xaml.cs">
+      <DependentUpon>AddForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BeeDialog.xaml.cs">
       <DependentUpon>BeeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetailForm.xaml.cs">
+      <DependentUpon>DetailForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Encryptor.cs" />
     <Compile Include="LoginWindow.xaml.cs">
@@ -88,6 +94,14 @@
     <Compile Include="Migrations\201910221110003_update-table-KhachHang.designer.cs">
       <DependentUpon>201910221110003_update-table-KhachHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910251006581_update-prop-SoTietKiem.cs" />
+    <Compile Include="Migrations\201910251006581_update-prop-SoTietKiem.designer.cs">
+      <DependentUpon>201910251006581_update-prop-SoTietKiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910260822133_update-table-SoTietKiem-add-col-TongTienLai.cs" />
+    <Compile Include="Migrations\201910260822133_update-table-SoTietKiem-add-col-TongTienLai.designer.cs">
+      <DependentUpon>201910260822133_update-table-SoTietKiem-add-col-TongTienLai.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\KyHan.cs" />
@@ -98,10 +112,22 @@
     <Compile Include="RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectorForm.xaml.cs">
+      <DependentUpon>SelectorForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartupWindow.xaml.cs">
       <DependentUpon>StartupWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GetThamSo.cs" />
+    <Page Include="AddForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BeeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +148,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="RegWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectorForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,17 +180,18 @@
     <EmbeddedResource Include="Migrations\201910221110003_update-table-KhachHang.resx">
       <DependentUpon>201910221110003_update-table-KhachHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910251006581_update-prop-SoTietKiem.resx">
+      <DependentUpon>201910251006581_update-prop-SoTietKiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910260822133_update-table-SoTietKiem-add-col-TongTienLai.resx">
+      <DependentUpon>201910260822133_update-table-SoTietKiem-add-col-TongTienLai.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\MoneyLover.Models.KhachHang.datasource" />
-    <None Include="Properties\DataSources\MoneyLover.Models.KyHan.datasource" />
-    <None Include="Properties\DataSources\MoneyLover.Models.NganHang.datasource" />
-    <None Include="Properties\DataSources\MoneyLover.Models.SoTietKiem.datasource" />
-    <None Include="Properties\DataSources\MoneyLover.Models.ThamSo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -56,7 +56,7 @@
             Margin="10 0 10 0"
             materialDesign:HintAssist.Hint="Số tiền gửi"
             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-            PreviewKeyDown="txtSoTienGui_PreviewKeyDown" />
+            PreviewTextInput="txtSoTienGui_PreviewTextInput"/>
 
         <ComboBox x:Name="txtKyHan"
             Grid.Row="2" Grid.Column="1"
@@ -82,7 +82,7 @@
             Margin="10 0 10 0"
             materialDesign:HintAssist.Hint="Lãi suất"
             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-            PreviewKeyDown="txtLaiSuat_PreviewKeyDown" />
+            PreviewTextInput="txtLaiSuat_PreviewTextInput" />
 
         <TextBox x:Name="txtLaiSuatKhongKyHan"
             Grid.Row="3" Grid.Column="1"
@@ -92,7 +92,7 @@
             Margin="10 0 10 0"
             materialDesign:HintAssist.Hint="Lãi suất không kỳ hạn"
             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-            PreviewKeyDown="txtLaiSuatKhongKyHan_PreviewKeyDown" />
+            PreviewTextInput="txtLaiSuatKhongKyHan_PreviewTextInput" />
 
         <ComboBox x:Name="txtTraLai"
             Grid.Row="4" Grid.Column="0"

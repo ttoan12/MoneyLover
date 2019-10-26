@@ -24,6 +24,7 @@ namespace MoneyLover
     {
         MLContext _context;
         KhachHang _khachHang;
+        GetThamSo _thamso;
         string _maKH;
 
         public AddForm(string maKH)
@@ -40,6 +41,7 @@ namespace MoneyLover
                 _context.NganHangs.Load();
                 _context.KyHans.Load();
                 _khachHang = _context.KhachHangs.First(x => x.MaKH == _maKH);
+                _thamso = new GetThamSo();
             }
             catch
             {
@@ -53,19 +55,19 @@ namespace MoneyLover
             txtNgayGui.SelectedDate = DateTime.Now;
         }
 
-        private void txtSoTienGui_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        private void txtSoTienGui_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void txtLaiSuat_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        private void txtLaiSuat_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9.%]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void txtLaiSuatKhongKyHan_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        private void txtLaiSuatKhongKyHan_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9.%]+");
             e.Handled = regex.IsMatch(e.Text);
@@ -73,25 +75,89 @@ namespace MoneyLover
 
         private void txtKyHan_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (txtKyHan.SelectedIndex == 0)
+                return;
+
             var nganHangs = _context.NganHangs.Local.Where(x => x.TenNganHang == txtNganHang.Text);
             if (nganHangs.Count() > 0)
             {
                 var kyHans = _context.KyHans.Local.Where(x => x.NganHang.MaNganHang == nganHangs.FirstOrDefault().MaNganHang);
                 if (kyHans.Count() > 0)
                 {
-                    txtLaiSuat.Text = kyHans.FirstOrDefault().LaiSuatNam.ToString() + "%";
+                    int thoiHan = 0;
+                    switch (txtKyHan.SelectedIndex)
+                    {
+                        case 1:
+                            thoiHan = 1;
+                            break;
+                        case 2:
+                            thoiHan = 3;
+                            break;
+                        case 3:
+                            thoiHan = 6;
+                            break;
+                        case 4:
+                            thoiHan = 12;
+                            break;
+                        default:
+                            return;
+                    }
+
+                    var kyHans1 = kyHans.Where(x => x.ThoiHan == thoiHan);
+                    if (kyHans1.Count() > 0)
+                    {
+                        txtLaiSuat.Text = kyHans1.FirstOrDefault().LaiSuatNam.ToString() + "%";
+                    }
                 }
             }
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
+            // Kiểm tra input
+            if (double.TryParse(txtSoTienGui.Text, out double tongTienGoc))
+            {
+                if (double.Parse(txtSoTienGui.Text) < _thamso.SoTienGuiToiThieu)
+                {
+                    MessageBox.Show("Số tiền gửi tối thiểu là " + _thamso.SoTienGuiToiThieu, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Hãy nhập số tiền cần gửi!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (txtNgayGui.SelectedDate.Value.Date < DateTime.Now.Date)
+            {
+                MessageBox.Show("Ngày gửi không được sớm hơn thời gian hiện tại!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (double.TryParse(txtLaiSuat.Text.Replace("%", ""), out double laiSuat))
+            {
+                MessageBox.Show("Hãy nhập lãi suất!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (double.TryParse(txtLaiSuatKhongKyHan.Text.Replace("%", ""), out double laiSuatKhongKH))
+            {
+                txtLaiSuatKhongKyHan.Text = _thamso.LaiSuatMacDinh.ToString() + "%";
+            }
+            if (txtTraLai.SelectedIndex == -1)
+            {
+                txtTraLai.SelectedIndex = 0;
+            }
+            if (txtKhiDenHan.SelectedIndex == -1)
+            {
+                txtKhiDenHan.SelectedIndex = 2;
+            }
+
+            // Khởi tạo biến
             string maSo = "STK_";
             NganHang nganHang = null;
             string ngayMoSo = txtNgayGui.SelectedDate.ToString();
-            double tongTienGoc = double.Parse(txtSoTienGui.Text);
             KyHan kyHan = null;
-            double laiSuatKhongKH = double.Parse(txtLaiSuatKhongKyHan.Text);
+            var traLai = txtTraLai.SelectedIndex;
+            var denHan = txtKhiDenHan.SelectedIndex;
 
             // Tạo mã sổ
             var STKs = _context.SoTietKiems.OrderByDescending(x => x.MaSTK);
@@ -127,9 +193,9 @@ namespace MoneyLover
                 kyHan = kyHans.First();
 
                 // Kiểm tra lãi suất
-                if (kyHan.LaiSuatNam != double.Parse(txtLaiSuat.Text.Replace("%", "")))
+                if (kyHan.LaiSuatNam != laiSuat)
                 {
-                    kyHan.LaiSuatNam = double.Parse(txtLaiSuat.Text.Replace("%", ""));
+                    kyHan.LaiSuatNam = laiSuat;
                     _context.SaveChanges();
                 }
             }
@@ -142,12 +208,13 @@ namespace MoneyLover
                     NganHang = nganHang,
                     MaKyHan = nganHang.MaNganHang + khIndex.ToString(),
                     ThoiHan = khIndex == 1 ? 1 : khIndex == 2 ? 3 : khIndex == 3 ? 6 : khIndex == 4 ? 12 : 0,
-                    LaiSuatNam = double.Parse(txtLaiSuat.Text.Replace("%", ""))
+                    LaiSuatNam = khIndex == 0 ? laiSuatKhongKH : laiSuat
                 };
                 _context.KyHans.Add(kyHan);
                 _context.SaveChanges();
             }
 
+            // Tạo STK mới
             SoTietKiem newSTK = new SoTietKiem()
             {
                 MaSTK = maSo,
@@ -156,6 +223,9 @@ namespace MoneyLover
                 NgayMoSo = ngayMoSo,
                 TinhTrang = "Chưa tất toán",
                 TongTienGoc = tongTienGoc,
+                TongTienLai = 0,
+                LoaiTraLai = traLai,
+                KhiDenHan = denHan,
                 KhachHang = _khachHang
             };
             _context.SoTietKiems.Add(newSTK);
@@ -170,5 +240,6 @@ namespace MoneyLover
             if (MessageBox.Show("Bạn có muốn huỷ thao tác?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 Close();
         }
+
     }
 }

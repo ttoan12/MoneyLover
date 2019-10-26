@@ -1,0 +1,67 @@
+﻿<Window x:Class="MoneyLover.SelectorForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+        Title="Sửa STK" Height="250" Width="300"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnSua"
+            Width="124" Height="50"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            materialDesign:ButtonAssist.CornerRadius="10"
+            ToolTip="Sửa thông tin sổ tiết kiệm"
+            Click="btnSua_Click">
+            <TextBlock Text="Sửa thông tin" />
+        </Button>
+        <Button x:Name="btnGuiThem"
+            Grid.Column="1"
+            Width="124" Height="50"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            materialDesign:ButtonAssist.CornerRadius="10"
+            ToolTip="Gửi thêm tiền vào sổ tiết kiệm"
+            Click="btnGuiThem_Click">
+            <TextBlock Text="Gửi thêm" />
+        </Button>
+        <Button x:Name="btnRutMotPhan"
+            Grid.Row="1"
+            Width="124" Height="50"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            materialDesign:ButtonAssist.CornerRadius="10"
+            ToolTip="Rút một phần tiền từ sổ tiết kiệm"
+            Click="btnRutMotPhan_Click">
+            <TextBlock Text="Rút một phần" />
+        </Button>
+        <Button x:Name="btnTatToan"
+            Grid.Row="1" Grid.Column="1"
+            Width="124" Height="50"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            materialDesign:ButtonAssist.CornerRadius="10"
+            ToolTip="Tất toán sổ tiết kiệm"
+            Click="btnTatToan_Click">
+            <TextBlock Text="Tất toán" />
+        </Button>
+        <Button x:Name="btnHuy"
+            Grid.Row="2" Grid.ColumnSpan="2"
+            Width="124" Height="50"
+            Style="{StaticResource MaterialDesignRaisedLightButton}"
+            materialDesign:ButtonAssist.CornerRadius="10"
+            ToolTip="Sửa thông tin sổ tiết kiệm"
+            Click="btnHuy_Click">
+            <TextBlock Text="Huỷ" />
+        </Button>
+    </Grid>
+</Window>
