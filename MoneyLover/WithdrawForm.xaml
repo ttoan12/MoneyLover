@@ -1,0 +1,53 @@
+﻿<Window x:Class="MoneyLover.WithdrawForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+        Title="Money Lover" Height="200" Width="300"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+            Rút tiền
+        </TextBlock>
+
+        <TextBox x:Name="txtTienRut"
+            Grid.Row="1"
+            Width="200"
+            VerticalAlignment="Center"
+            materialDesign:HintAssist.Hint="Số tiền cần rút"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            PreviewTextInput="txtTienRut_PreviewTextInput"/>
+
+        <Button x:Name="btnRut"
+            Grid.Row="2"
+            Width="100"
+            Margin="0 0 110 0"
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+            ToolTip="Xác nhận rút tiền"
+            Click="btnRut_Click">
+            Rút
+        </Button>
+        <Button x:Name="btnHuy"
+            Grid.Row="2"
+            Width="100"
+            Margin="110 0 0 0"
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="Quay về trang quản lý"
+            Click="btnHuy_Click">
+            Huỷ
+        </Button>
+    </Grid>
+</Window>

@@ -129,6 +129,9 @@
       <DependentUpon>StartupWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GetThamSo.cs" />
+    <Compile Include="WithdrawForm.xaml.cs">
+      <DependentUpon>WithdrawForm.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StartupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WithdrawForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -62,7 +62,9 @@ namespace MoneyLover
 
         private void btnRutMotPhan_Click(object sender, RoutedEventArgs e)
         {
-            // Form rút một phần
+            WithdrawForm withdrawForm = new WithdrawForm(_maSo);
+            withdrawForm.ShowDialog();
+            Close();
         }
 
         private void btnTatToan_Click(object sender, RoutedEventArgs e)

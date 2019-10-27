@@ -59,9 +59,9 @@ namespace MoneyLover
         {
             if (MessageBox.Show("Số tiền gửi thêm sẽ bắt đầu tính lãi sau khi đến hạn.\nXác nhận gửi thêm?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                if (double.Parse(txtTienGuiThem.Text) >= _thamso.SoTienGuiThemToiThieu)
+                if (double.TryParse(txtTienGuiThem.Text, out double t) && t >= _thamso.SoTienGuiThemToiThieu)
                 {
-                    _stk.TienGuiThem += double.Parse(txtTienGuiThem.Text);
+                    _stk.TienGuiThem += t;
                     _context.SaveChanges();
                     MessageBox.Show("Gửi thêm thành công", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
