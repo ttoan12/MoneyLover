@@ -48,12 +48,16 @@ namespace MoneyLover
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            // Form sửa
+            EditForm editForm = new EditForm(_maSo);
+            editForm.ShowDialog();
+            Close();
         }
 
         private void btnGuiThem_Click(object sender, RoutedEventArgs e)
         {
-            // Form gửi thêm
+            AddFundForm addFundForm = new AddFundForm(_maSo);
+            addFundForm.ShowDialog();
+            Close();
         }
 
         private void btnRutMotPhan_Click(object sender, RoutedEventArgs e)
@@ -113,7 +117,8 @@ namespace MoneyLover
                 _stk.TongTienLai += (_stk.TongTienGoc * _stk.LaiSuatKhongKyHan * soThangDaGui / 12);
             }
             _stk.TinhTrang = "Đã tất toán";
-            return _stk.TongTienGoc + _stk.TongTienLai;
+            _context.SaveChanges();
+            return _stk.TongTienGoc + _stk.TongTienLai + _stk.TienGuiThem;
         }
     }
 }

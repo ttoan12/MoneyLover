@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MoneyLover"
         mc:Ignorable="d"
-        Title="Sửa STK" Height="250" Width="300"
+        Title="Money Lover" Height="250" Width="300"
         Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>

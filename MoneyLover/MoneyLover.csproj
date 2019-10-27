@@ -76,11 +76,17 @@
     <Compile Include="AddForm.xaml.cs">
       <DependentUpon>AddForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddFundForm.xaml.cs">
+      <DependentUpon>AddFundForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BeeDialog.xaml.cs">
       <DependentUpon>BeeDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetailForm.xaml.cs">
       <DependentUpon>DetailForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditForm.xaml.cs">
+      <DependentUpon>EditForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Encryptor.cs" />
     <Compile Include="LoginWindow.xaml.cs">
@@ -101,6 +107,10 @@
     <Compile Include="Migrations\201910260822133_update-table-SoTietKiem-add-col-TongTienLai.cs" />
     <Compile Include="Migrations\201910260822133_update-table-SoTietKiem-add-col-TongTienLai.designer.cs">
       <DependentUpon>201910260822133_update-table-SoTietKiem-add-col-TongTienLai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910270033531_update-table-SoTietKiem-add-col-TienGuiThem.cs" />
+    <Compile Include="Migrations\201910270033531_update-table-SoTietKiem-add-col-TienGuiThem.designer.cs">
+      <DependentUpon>201910270033531_update-table-SoTietKiem-add-col-TienGuiThem.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\KhachHang.cs" />
@@ -123,11 +133,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddFundForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BeeDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetailForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910260822133_update-table-SoTietKiem-add-col-TongTienLai.resx">
       <DependentUpon>201910260822133_update-table-SoTietKiem-add-col-TongTienLai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910270033531_update-table-SoTietKiem-add-col-TienGuiThem.resx">
+      <DependentUpon>201910270033531_update-table-SoTietKiem-add-col-TienGuiThem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MoneyLover"
         mc:Ignorable="d"
-        Title="BeeDialog" Height="270" Width="300" SizeToContent="Height" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="Money Lover" Height="270" Width="300" SizeToContent="Height" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <StackPanel>
         <Image Source="/images/Bee.png" Height="80" Margin="0,20,0,0"/>
         <TextBlock TextWrapping="Wrap" Margin="20,10" Style="{StaticResource MaterialDesignSubheadingTextBlock}">

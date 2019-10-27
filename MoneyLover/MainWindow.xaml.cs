@@ -64,11 +64,9 @@ namespace MoneyLover
 
         private void BtnSua_Click(object sender, RoutedEventArgs e)
         {
-            /* TODO: Form sửa sổ chưa tất toán
-             *  - Gửi thêm
-             *  - Rút một phần
-             *  - Tất toán
-             */
+            string maSo = dgSoDangMo.SelectedValue.ToString();
+            SelectorForm selectorForm = new SelectorForm(maSo);
+            selectorForm.ShowDialog();
 
             LoadDanhSach();
         }

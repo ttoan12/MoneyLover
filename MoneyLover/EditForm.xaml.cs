@@ -18,19 +18,19 @@ using System.Windows.Shapes;
 namespace MoneyLover
 {
     /// <summary>
-    /// Interaction logic for AddForm.xaml
+    /// Interaction logic for EditForm.xaml
     /// </summary>
-    public partial class AddForm : Window
+    public partial class EditForm : Window
     {
         MLContext _context;
-        KhachHang _khachHang;
+        SoTietKiem _stk;
         GetThamSo _thamso;
-        string _maKH;
+        string _maSo;
 
-        public AddForm(string maKH)
+        public EditForm(string maSo)
         {
             InitializeComponent();
-            _maKH = maKH;
+            _maSo = maSo;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -38,9 +38,9 @@ namespace MoneyLover
             try
             {
                 _context = new MLContext();
+                _stk = _context.SoTietKiems.First(x => x.MaSTK == _maSo);
                 _context.NganHangs.Load();
                 _context.KyHans.Load();
-                _khachHang = _context.KhachHangs.First(x => x.MaKH == _maKH);
                 _thamso = new GetThamSo();
             }
             catch
@@ -52,7 +52,17 @@ namespace MoneyLover
             }
 
             txtNganHang.ItemsSource = _context.NganHangs.Local.Select(x => x.TenNganHang).ToArray();
-            txtNgayGui.SelectedDate = DateTime.Now;
+
+            // Điền thông tin
+            txtNganHang.Text = _stk.KyHan.NganHang.TenNganHang;
+            txtNgayGui.SelectedDate = DateTime.Parse(_stk.NgayMoSo);
+            txtSoTienGui.Text = _stk.TongTienGoc.ToString();
+            int thoiHan = _stk.KyHan.ThoiHan;
+            txtKyHan.SelectedIndex = thoiHan < 2 ? thoiHan : thoiHan == 3 ? 2 : thoiHan == 6 ? 3 : 4;
+            txtLaiSuat.Text = _stk.KyHan.LaiSuatNam.ToString() + "%";
+            txtLaiSuatKhongKyHan.Text = _stk.LaiSuatKhongKyHan.ToString() + "%";
+            txtTraLai.SelectedIndex = _stk.LoaiTraLai;
+            txtKhiDenHan.SelectedIndex = _stk.KhiDenHan;
         }
 
         private void txtSoTienGui_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -109,7 +119,7 @@ namespace MoneyLover
             }
         }
 
-        private void btnThem_Click(object sender, RoutedEventArgs e)
+        private void btnSua_Click(object sender, RoutedEventArgs e)
         {
             // Kiểm tra input
             if (double.TryParse(txtSoTienGui.Text, out double tongTienGoc))
@@ -212,25 +222,17 @@ namespace MoneyLover
                 _context.SaveChanges();
             }
 
-            // Tạo STK mới
-            SoTietKiem newSTK = new SoTietKiem()
-            {
-                MaSTK = maSo,
-                KyHan = kyHan,
-                LaiSuatKhongKyHan = laiSuatKhongKH,
-                NgayMoSo = ngayMoSo,
-                TinhTrang = "Chưa tất toán",
-                TongTienGoc = tongTienGoc,
-                TongTienLai = 0,
-                TienGuiThem = 0,
-                LoaiTraLai = traLai,
-                KhiDenHan = denHan,
-                KhachHang = _khachHang
-            };
-            _context.SoTietKiems.Add(newSTK);
+            // Sửa STK
+            _stk.KyHan = kyHan;
+            _stk.LaiSuatKhongKyHan = laiSuatKhongKH;
+            _stk.NgayMoSo = ngayMoSo;
+            _stk.TongTienGoc = tongTienGoc;
+            _stk.LoaiTraLai = traLai;
+            _stk.KhiDenHan = denHan;
+
             _context.SaveChanges();
 
-            if (MessageBox.Show("Đã thêm sổ thành công!", "Info", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
+            if (MessageBox.Show("Sửa thông tin sổ thành công!", "Info", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 Close();
         }
 

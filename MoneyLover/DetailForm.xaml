@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoneyLover"
         mc:Ignorable="d"
-        Title="Xem STK" Height="400" Width="400"
+        Title="Money Lover" Height="400" Width="400"
         Loaded="Window_Loaded">
     <Grid Margin="10 0 10 0">
         <Grid.ColumnDefinitions>

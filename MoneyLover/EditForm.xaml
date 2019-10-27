@@ -1,4 +1,4 @@
-﻿<Window x:Class="MoneyLover.AddForm"
+﻿<Window x:Class="MoneyLover.EditForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MoneyLover"
         mc:Ignorable="d"
-        Title="Money Lover" Height="300" Width="500" Loaded="Window_Loaded">
+        Title="Money Lover" Height="300" Width="500"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -26,7 +27,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Style="{StaticResource MaterialDesignHeadlineTextBlock}">
-                Thêm sổ tiết kiệm
+                Sửa sổ tiết kiệm
         </TextBlock>
 
         <ComboBox x:Name="txtNganHang"
@@ -120,15 +121,15 @@
             <ComboBoxItem>Tất toán sổ</ComboBoxItem>
         </ComboBox>
 
-        <Button x:Name="btnThem"
+        <Button x:Name="btnSua"
             Grid.Row="5" Grid.Column="0"
             HorizontalAlignment="Right" VerticalAlignment="Center"
             Margin="0 0 4 0"
             Style="{StaticResource MaterialDesignFlatAccentBgButton}"
             Width="150"
-            ToolTip="Thêm sổ tiết kiệm vào danh sách"
-            Click="btnThem_Click">
-                Thêm sổ
+            ToolTip="Sửa thông tin sổ tiết kiệm"
+            Click="btnSua_Click">
+            Sửa
         </Button>
 
         <Button x:Name="btnHuy"
