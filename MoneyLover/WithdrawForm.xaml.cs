@@ -59,7 +59,9 @@ namespace MoneyLover
         {
             if (_stk.KyHan.ThoiHan != 0)
             {
-                if (MessageBox.Show("Số tiền rút trước kỳ hạn sẽ được tính lãi theo lãi suất không kỳ hạn.\nXác nhận rút tiền?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                string ngayDenHan = DateTime.Parse(_stk.NgayMoSo).AddMonths(_stk.KyHan.ThoiHan).ToShortDateString();
+                BeeDialog beeDialog = new BeeDialog(_maSo, ngayDenHan, _stk.LaiSuatKhongKyHan.ToString());
+                if (beeDialog.ShowDialog() == true)
                 {
                     if (double.TryParse(txtTienRut.Text, out double t))
                     {
