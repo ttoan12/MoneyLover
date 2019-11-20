@@ -78,28 +78,15 @@ namespace MoneyLover
         {
             string mail = txtEmail.Text;
             string psw = txtPassword.Password.Length > 0 ? txtPassword.Password : txtPassword_Show.Text;
-            if (AccountValidate.IsMail(mail) && AccountValidate.IsPassword(psw))
+
+            if (AccountHelper.DangNhap(mail, psw))
             {
-                try
-                {
-                    var kh = _context.KhachHangs.Local.Where(x => x.Email == mail);
-                    if (kh.Count() > 0)
-                    {
-                        if (psw == Encryptor.Decrypt(kh.FirstOrDefault().Password, kh.FirstOrDefault().MaKH))
-                        {
-                            MainWindow mainWindow = new MainWindow(kh.FirstOrDefault().MaKH);
-                            mainWindow.Show();
-                            Close();
-                        }
-                        else throw new Exception("Sai mật khẩu");
-                    }
-                    else throw new Exception("Sai Email");
-                }
-                catch
-                {
-                    MessageBox.Show("Email hoặc mật khẩu không đúng!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                var kh = _context.KhachHangs.Local.Where(x => x.Email == mail);
+                MainWindow mainWindow = new MainWindow(kh.FirstOrDefault().MaKH);
+                mainWindow.Show();
+                Close();
             }
+            else MessageBox.Show("Email hoặc mật khẩu không đúng!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)

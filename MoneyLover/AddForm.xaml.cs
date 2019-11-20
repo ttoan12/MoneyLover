@@ -239,6 +239,5 @@ namespace MoneyLover
             if (MessageBox.Show("Bạn có muốn huỷ thao tác?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 Close();
         }
-
     }
 }

@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace MoneyLover
 {
-    static class AccountValidate
+    public static class AccountValidate
     {
         public static bool IsMail(string emailaddress)
         {

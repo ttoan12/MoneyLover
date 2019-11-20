@@ -79,46 +79,15 @@ namespace MoneyLover
         {
             string mail = txtEmail.Text;
             string psw = txtPassword.Password.Length > 0 ? txtPassword.Password : txtPassword_Show.Text;
-            if (AccountValidate.IsMail(mail) && AccountValidate.IsPassword(psw))
+            if (AccountHelper.DangKy(mail, psw, out KhachHang kh, out string msg))
             {
-                var kh = _context.KhachHangs.Local.Where(x => x.Email == mail);
-                if (kh.Count() == 0)
-                {
-                    var listKH = _context.KhachHangs.Local;
-
-                    var lastNumID = 0;
-                    if (listKH.Count() > 0)
-                    {
-                        lastNumID = int.Parse(listKH.OrderByDescending(x => x.MaKH).FirstOrDefault().MaKH.Split('_')[1]);
-                    }
-
-                    var makh = "KH_" + (lastNumID + 1).ToString();
-
-                    KhachHang newKH = new KhachHang()
-                    {
-                        MaKH = makh,
-                        Email = mail,
-                        Password = Encryptor.Encrypt(psw, makh)
-                    };
-
-                    try
-                    {
-                        _context.KhachHangs.Add(newKH);
-                        _context.SaveChanges();
-                    }
-                    catch
-                    {
-                        if (MessageBox.Show("Máy chủ đang được bảo trì!", "Error", MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
-                        {
-                            Close();
-                        }
-                    }
-
-                    MainWindow mainWindow = new MainWindow(makh);
-                    mainWindow.Show();
-                    Close();
-                }
-                else MessageBox.Show("Email này đã được sử dụng!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MainWindow mainWindow = new MainWindow(kh.MaKH);
+                mainWindow.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

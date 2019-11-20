@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MoneyLover.Models
 {
-    class KhachHang
+    public class KhachHang
     {
         [Key]
         public string MaKH { get; set; }
