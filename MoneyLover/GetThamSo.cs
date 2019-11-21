@@ -11,31 +11,42 @@ namespace MoneyLover
     class GetThamSo
     {
         MLContext _context;
+        private double soTienGuiToiThieu = 1000000;
+        private double laiSuatMacDinh = 0.05;
+        private double soTienGuiThemToiThieu = 100000;
+        private double soNgayGuiToiThieu = 15;
 
         public GetThamSo()
         {
-            _context = new MLContext();
-            _context.ThamSos.Load();
+            try
+            {
+                _context = new MLContext();
+                soTienGuiToiThieu = _context.ThamSos.First(x => x.TenThamSo == "SoTienGuiMIN").GiaTri;
+                laiSuatMacDinh = _context.ThamSos.First(x => x.TenThamSo == "LaiSuatMacDinh").GiaTri;
+                soTienGuiThemToiThieu = _context.ThamSos.First(x => x.TenThamSo == "SoTienGuiThemMIN").GiaTri;
+                soNgayGuiToiThieu = _context.ThamSos.First(x => x.TenThamSo == "SoNgayGuiMIN").GiaTri;
+            }
+            catch { };
         }
 
         public double SoTienGuiToiThieu
         {
-            get { return _context.ThamSos.Local.First(x => x.TenThamSo == "SoTienGuiMIN").GiaTri; }
+            get { return soTienGuiToiThieu; }
         }
 
         public double LaiSuatMacDinh
         {
-            get { return _context.ThamSos.Local.First(x => x.TenThamSo == "LaiSuatMacDinh").GiaTri; }
+            get { return laiSuatMacDinh; }
         }
 
         public double SoTienGuiThemToiThieu
         {
-            get { return _context.ThamSos.Local.First(x => x.TenThamSo == "SoTienGuiThemMIN").GiaTri; }
+            get { return soTienGuiThemToiThieu; }
         }
 
         public double SoNgayGuiToiThieu
         {
-            get { return _context.ThamSos.Local.First(x => x.TenThamSo == "SoNgayGuiMIN").GiaTri; }
+            get { return soNgayGuiToiThieu; }
         }
     }
 }

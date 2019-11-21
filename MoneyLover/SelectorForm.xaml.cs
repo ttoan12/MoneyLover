@@ -74,7 +74,7 @@ namespace MoneyLover
             if (_stk.KhiDenHan == 2)
             {
                 // Sổ chọn tất toán khi đến hạn
-                if ((DateTime.Now - ngayDenHan).Days > 0)
+                if (InputHelper.IsDenHan(ngayDenHan))
                 {
                     // Đã đến hạn
                     if (MessageBox.Show("Sổ đã đến hạn tất toán, bạn có muốn tiếp tục?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

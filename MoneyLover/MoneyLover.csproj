@@ -90,6 +90,7 @@
       <DependentUpon>EditForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Encryptor.cs" />
+    <Compile Include="InputHelper.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>

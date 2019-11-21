@@ -9,7 +9,7 @@ namespace MoneyLover
 {
     public static class AccountHelper
     {
-        public static bool DangNhap(string mail, string psw)
+        public static bool DangNhap(string mail, string psw, out string msg)
         {
             if (AccountValidate.IsMail(mail) && AccountValidate.IsPassword(psw))
             {
@@ -19,14 +19,27 @@ namespace MoneyLover
                 {
                     if (psw == Encryptor.Decrypt(kh.FirstOrDefault().Password, kh.FirstOrDefault().MaKH))
                     {
+                        msg = "";
                         return true;
                     }
-                    else return false; // Sai mật khẩu
+                    else
+                    {
+                        msg = "Sai mật khẩu!";
+                        return false;
+                    }
                 }
-                else return false; // Sai tài khoản
+                else
+                {
+                    msg = "Sai tài khoản!";
+                    return false;
+                }
 
             }
-            else return false; // Sai định dạng mail | password
+            else
+            {
+                msg = "Sai định dạng email hoặc mật khẩu!";
+                return false;
+            }
         }
 
         public static bool DangKy(string mail, string psw, out KhachHang newKH, out string msg)

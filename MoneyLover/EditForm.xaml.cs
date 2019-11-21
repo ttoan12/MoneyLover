@@ -121,33 +121,27 @@ namespace MoneyLover
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
+            string msg = "";
             // Kiểm tra input
-            if (double.TryParse(txtSoTienGui.Text, out double tongTienGoc))
+            if (!InputHelper.SoTienGui(txtSoTienGui.Text, out double tongTienGoc, out msg))
             {
-                if (double.Parse(txtSoTienGui.Text) < _thamso.SoTienGuiToiThieu)
-                {
-                    MessageBox.Show("Số tiền gửi tối thiểu là " + _thamso.SoTienGuiToiThieu, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Hãy nhập số tiền cần gửi!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(msg, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (txtNgayGui.SelectedDate.Value.Date < DateTime.Now.Date)
+            if (!InputHelper.NgayGui(txtNgayGui.SelectedDate.Value.Date, out msg))
             {
-                MessageBox.Show("Ngày gửi không được sớm hơn thời gian hiện tại!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(msg, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (double.TryParse(txtLaiSuat.Text.Replace("%", ""), out double laiSuat))
+            if (!InputHelper.LaiSuat(txtLaiSuat.Text, out double laiSuat, out msg))
             {
-                MessageBox.Show("Hãy nhập lãi suất!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(msg, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (double.TryParse(txtLaiSuatKhongKyHan.Text.Replace("%", ""), out double laiSuatKhongKH))
+            if (!double.TryParse(txtLaiSuatKhongKyHan.Text.Replace("%", ""), out double laiSuatKhongKH))
             {
                 txtLaiSuatKhongKyHan.Text = _thamso.LaiSuatMacDinh.ToString() + "%";
+                laiSuatKhongKH = _thamso.LaiSuatMacDinh;
             }
             if (txtTraLai.SelectedIndex == -1)
             {

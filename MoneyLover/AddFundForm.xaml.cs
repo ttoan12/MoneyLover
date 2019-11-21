@@ -59,7 +59,8 @@ namespace MoneyLover
         {
             if (MessageBox.Show("Số tiền gửi thêm sẽ bắt đầu tính lãi sau khi đến hạn.\nXác nhận gửi thêm?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                if (double.TryParse(txtTienGuiThem.Text, out double t) && t >= _thamso.SoTienGuiThemToiThieu)
+                string msg = "";
+                if (InputHelper.SoTienGui(txtTienGuiThem.Text, out double t, out msg))
                 {
                     _stk.TienGuiThem += t;
                     _context.SaveChanges();
@@ -68,7 +69,7 @@ namespace MoneyLover
                 }
                 else
                 {
-                    MessageBox.Show("Số tiền gửi thêm tối thiểu là " + _thamso.SoTienGuiThemToiThieu + " VNĐ", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show(msg, "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
         }

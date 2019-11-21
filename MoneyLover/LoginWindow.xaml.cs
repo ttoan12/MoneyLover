@@ -79,14 +79,14 @@ namespace MoneyLover
             string mail = txtEmail.Text;
             string psw = txtPassword.Password.Length > 0 ? txtPassword.Password : txtPassword_Show.Text;
 
-            if (AccountHelper.DangNhap(mail, psw))
+            if (AccountHelper.DangNhap(mail, psw, out string msg))
             {
                 var kh = _context.KhachHangs.Local.Where(x => x.Email == mail);
                 MainWindow mainWindow = new MainWindow(kh.FirstOrDefault().MaKH);
                 mainWindow.Show();
                 Close();
             }
-            else MessageBox.Show("Email hoặc mật khẩu không đúng!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)
