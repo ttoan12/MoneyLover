@@ -153,19 +153,11 @@ namespace MoneyLover
             }
 
             // Khởi tạo biến
-            string maSo = "STK_";
             NganHang nganHang = null;
             string ngayMoSo = txtNgayGui.SelectedDate.ToString();
             KyHan kyHan = null;
             var traLai = txtTraLai.SelectedIndex;
             var denHan = txtKhiDenHan.SelectedIndex;
-
-            // Tạo mã sổ
-            var STKs = _context.SoTietKiems.OrderByDescending(x => x.MaSTK);
-            if (STKs.Count() > 0)
-            {
-                maSo += (int.Parse(STKs.First().MaSTK.Split('_')[1]) + 1).ToString();
-            }
 
             // Kiểm tra ngân hàng
             var nganHangs = _context.NganHangs.Where(x => x.TenNganHang == txtNganHang.Text);

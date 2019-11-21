@@ -60,7 +60,7 @@ namespace MoneyLover
             if (MessageBox.Show("Số tiền gửi thêm sẽ bắt đầu tính lãi sau khi đến hạn.\nXác nhận gửi thêm?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 string msg = "";
-                if (InputHelper.SoTienGui(txtTienGuiThem.Text, out double t, out msg))
+                if (InputHelper.SoTienGuiThem(txtTienGuiThem.Text, out double t, out msg))
                 {
                     _stk.TienGuiThem += t;
                     _context.SaveChanges();

@@ -14,7 +14,7 @@ namespace MoneyLover
             if (AccountValidate.IsMail(mail) && AccountValidate.IsPassword(psw))
             {
                 MLContext _context = new MLContext();
-                var kh = _context.KhachHangs.Local.Where(x => x.Email == mail);
+                var kh = _context.KhachHangs.Where(x => x.Email == mail);
                 if (kh.Count() > 0)
                 {
                     if (psw == Encryptor.Decrypt(kh.FirstOrDefault().Password, kh.FirstOrDefault().MaKH))
@@ -48,10 +48,10 @@ namespace MoneyLover
             if (AccountValidate.IsMail(mail) && AccountValidate.IsPassword(psw))
             {
                 MLContext _context = new Models.MLContext();
-                var kh = _context.KhachHangs.Local.Where(x => x.Email == mail);
+                var kh = _context.KhachHangs.Where(x => x.Email == mail);
                 if (kh.Count() == 0)
                 {
-                    var listKH = _context.KhachHangs.Local;
+                    var listKH = _context.KhachHangs;
 
                     var lastNumID = 0;
                     if (listKH.Count() > 0)

@@ -151,10 +151,13 @@ namespace MoneyLover
             var denHan = txtKhiDenHan.SelectedIndex;
 
             // Tạo mã sổ
-            var STKs = _context.SoTietKiems.OrderByDescending(x => x.MaSTK);
+            var STKs = _context.SoTietKiems.OrderByDescending(x => x.MaSTK).ToList();
             if (STKs.Count() > 0)
             {
                 maSo += (int.Parse(STKs.First().MaSTK.Split('_')[1]) + 1).ToString();
+            }else
+            {
+                maSo += "1";
             }
 
             // Kiểm tra ngân hàng

@@ -31,6 +31,29 @@ namespace MoneyLover
             }
         }
 
+        public static bool SoTienGuiThem(string input, out double tienGui, out string msg)
+        {
+            var _thamso = new GetThamSo();
+            if (double.TryParse(input, out tienGui))
+            {
+                if (tienGui < _thamso.SoTienGuiThemToiThieu)
+                {
+                    msg = "Số tiền gửi thêm tối thiểu là " + _thamso.SoTienGuiThemToiThieu;
+                    return false;
+                }
+                else
+                {
+                    msg = "";
+                    return true;
+                }
+            }
+            else
+            {
+                msg = "Hãy nhập số tiền cần gửi!";
+                return false;
+            }
+        }
+
         public static bool NgayGui(DateTime input, out string msg)
         {
             if (input.Month < DateTime.Now.Month || input.Day < DateTime.Now.Day)
